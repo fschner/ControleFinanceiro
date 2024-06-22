@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/estilo.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <title>Sistema de Controle Financeiro - SCF</title>
+  </head>
+  <body id="scf-insert-desp">
+    <h1 class="p-5">Sistema de Controle Financeiro - SCF - MENU</h1>
+
+    <section>
+      <div class="container">
+        <div class="card p-5">
+          <div class="row justify-content-between">
+            <div class="col-max">
+              <span id="welcome-message"></span>
+            </div>
+            <div class="col-max">Logo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container mt-4">
+        <div class="card p-5">
+          <div class="row justify-content-between">
+            <div class="col-max">
+              <span>R$ 100,00</span>
+              <p>Saldo</p>
+            </div>
+            <div class="col-max">
+              <span>R$ 300,00</span>
+              <p>Futuros</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+        <div class="container mt-4">
+          <div class="card p-5">
+            <form id="inserirDespesas">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="dataDesp">Selecione a Data:</label>
+                    <input type="date" class="form-control" id="dataDesp">
+                  </div>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="despesa">Despesa:</label>
+                    <input type="text" class="form-control" id="despesa">
+                  </div>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="valor">Valor:</label>
+                    <input type="number" class="form-control" id="valor" name="valor" step="0.01">
+                  </div>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="categoria">Categoria:</label>
+                    <select id="categoria" class="form-control">
+                      <option selected>Escolher...</option>
+                      <option value="App Delivery">App Delivery</option>
+                      <option value="Casa">Casa</option>
+                      <option value="Carro">Carro</option>
+                      <option value="Comida">Comida</option>
+                      <option value="Combustível">Combustível</option>
+                      <option value="Diversão">Diversão</option>
+                      <option value="Imposto">Imposto</option>
+                      <option value="Multa">Multa</option>
+                      <option value="Pet">Pet</option>
+                      <option value="Remédios">Remédios</option>
+                      <option value="Roupa">Roupa</option>
+                      <option value="Outros">Outros</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="metodoPagamento">Método de Pagamento:</label>
+                    <select id="metodoPagamento" class="form-control">
+                      <option selected>Escolher...</option>
+                      <option value="boleto">Boleto</option>
+                      <option value="cartaoCredito">Cartão Crédito</option>
+                      <option value="cartaoDebito">Cartão Débito</option>
+                      <option value="dda">Débito Automático</option>
+                      <option value="dinheiro">Dinheiro</option>
+                      <option value="pix">Pix</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="tipoPagamento">Tipo de Pagamento:</label>
+                    <select id="tipoPagamento" class="form-control">
+                      <option selected>Escolher...</option>
+                      <option value="avista">A Vista</option>
+                      <option value="aprazo">A Prazo</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group" id="parcelamento" style="display: none">
+                    <label for="vezes">Parcelas:</label>
+                    <input type="number" class="form-control" id="vezes" min="1" onchange="calcularParcelas()">
+                  </div>
+                </div>
+    
+                <div class="col-6">
+                  <div class="form-group" id="valorParcela" style="display: none">
+                    <label for="parcela">Valor Parcelas:</label>
+                    <input type="text" class="form-control" id="parcela" readonly>
+                  </div>
+                </div>
+              </div>
+    
+            </form>
+          </div>
+        </div>
+      </section>
+    
+    <section>
+      <div class="container mt-5 mb-5">
+        <div class="col-6">
+          <button
+            id="voltar"
+            type="button"
+            class="btn btn-danger"
+            data-route="voltarMenu">
+            Voltar
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="../js/rota.js"></script>
+    <script src="../js/common.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

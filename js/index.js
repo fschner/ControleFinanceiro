@@ -1,1 +1,1 @@
-alert('index.js ok!!');
+alert('LINK index.js ok!!');
